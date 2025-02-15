@@ -77,7 +77,7 @@
         const file = new File([blob], 'poster.png', { type: 'image/png' });
         if (navigator.share) {
           await navigator.share({
-            title: 'Check out my poster!',
+            title: "I'm a proud Women Voter. My Vote, My Voice! Register Your Vote Now!",
             files: [file],
           });
         } else {
