@@ -24,7 +24,7 @@
 
         // Draw background template
         const template = new Image();
-        template.src = '/img/template.png'; // Replace with actual template path
+        template.src = 'img/template.png'; // Replace with actual template path
         template.onload = () => {
             ctx.drawImage(template, 0, 0, canvas.width, canvas.height);
 
@@ -98,13 +98,13 @@
 
   </script>
   
-  <div class="bg-white rounded-md shadow-md p-5">
+  <div class="bg-white rounded-md shadow-md p-5 max-w-xl mx-auto">
    
     <div class="text-center font-bold mb-5">Generate Your Poster</div>
     
     <div bind:this="{imageSelect}" class="flex items-center justify-center mb-5">
         <label for="upload-file" class="border border-2 border-dashed w-56 p-5 rounded-lg flex flex-col items-center">
-            <img src="/img/selfie.svg" alt="Take Selfie" class="mb-2 h-40">
+            <img src="img/selfie.svg" alt="Take Selfie" class="mb-2 h-40"/>
             <div class="text-center">Take Selfie</div>
         </label>
     </div>
