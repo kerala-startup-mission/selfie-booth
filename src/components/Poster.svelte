@@ -148,7 +148,7 @@
       </label>
     </div>
 
-    <canvas bind:this="{canvas}" width="500" height="500" class="w-full fixed -z-10 mb-5"></canvas>
+    <canvas bind:this="{canvas}" width="1080" height="1080" class="w-full fixed -z-10 mb-5"></canvas>
 
     <div class="text-center hidden flex items-center gap-3 flex-wrap justify-center" bind:this="{shareBtn}">
       <button on:click="{sharePoster}"  class="px-5 py-2 bg-[#444b53] text-white rounded-lg shadow-md flex gap-2">
