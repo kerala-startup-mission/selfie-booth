@@ -41,7 +41,7 @@
                     const imgWidth = imageSize.width; // Example size
                     const imgHeight = imageSize.height;
                     const centerX = canvas.width / 2;
-                    const centerY = canvas.height / 2;
+                    const centerY = (canvas.height / 2) + 23;
 
                     // Create a circular clipping path
                     ctx.save();
@@ -54,7 +54,7 @@
                     ctx.drawImage(
                         userImage,
                         centerX - imgWidth / 2,
-                        centerY - imgHeight / 2,
+                        (centerY - imgHeight / 2),
                         imgWidth,
                         imgHeight
                     );
@@ -102,7 +102,7 @@
     }
 
     function resizeToMax200(width, height) {
-      const maxSize = 200;
+      const maxSize = 257;
       let newWidth, newHeight;
 
       if (width < height) {
