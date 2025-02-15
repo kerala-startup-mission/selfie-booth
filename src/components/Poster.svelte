@@ -142,7 +142,7 @@
             <div class="text-center">Take Selfie</div>
         </label>
 
-        <label for="upload-file-1" class="border border-2 border-dashed p-5 rounded-lg flex flex-col items-center">
+        <label for="upload-file-2" class="border border-2 border-dashed p-5 rounded-lg flex flex-col items-center">
           <img src="img/file-upload.svg" alt="Take Selfie" class="mb-2 h-40"/>
           <div class="text-center">Upload Image</div>
       </label>
