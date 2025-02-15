@@ -22,8 +22,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Add line to astro.config.mjs
         run: |
-          sed -i '/export default defineConfig({/a\    site: "https://astronaut.github.io",' astro.config.mjs
-          sed -i '/export default defineConfig({/a\    base: "my-repo",' astro.config.mjs
+          sed -i '/export default defineConfig({/a\   site: "https://astronaut.github.io",' astro.config.mjs
+          sed -i '/export default defineConfig({/a\   base: "my-repo",' astro.config.mjs
       - name: Install, build, and upload your site
         uses: withastro/action@v3
         # with:
