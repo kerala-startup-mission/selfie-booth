@@ -1,6 +1,8 @@
 <script>
+    import { onMount } from 'svelte';
+
     let imageSrc = '';
-    let canvas, imageSelect, shareBtn;
+    let canvas, imageSelect, shareBtn, selfieBooth;
   
     // Function to handle image selection
     function handleImageUpload(event) {
@@ -33,8 +35,11 @@
                 const userImage = new Image();
                 userImage.src = imageSrc;
                 userImage.onload = () => {
-                    const imgWidth = 200; // Example size
-                    const imgHeight = 200;
+                    
+                    let imageSize = resizeToMax200(userImage.width, userImage.height);
+
+                    const imgWidth = imageSize.width; // Example size
+                    const imgHeight = imageSize.height;
                     const centerX = canvas.width / 2;
                     const centerY = canvas.height / 2;
 
@@ -96,17 +101,51 @@
       shareBtn.classList.add('hidden');
     }
 
+    function resizeToMax200(width, height) {
+      const maxSize = 200;
+      let newWidth, newHeight;
+
+      if (width < height) {
+        // Width is the larger side
+        newWidth = maxSize;
+        newHeight = (height / width) * maxSize;
+      } else {
+        // Height is the larger side
+        newHeight = maxSize;
+        newWidth = (width / height) * maxSize;
+      }
+
+      return { width: newWidth, height: newHeight };
+    }
+
+    function isCaptureSupported() {
+      // Check if the browser can access media devices
+      return !!navigator.mediaDevices && /Android|iPhone|iPad/i.test(navigator.userAgent);
+    }
+
+    onMount(() => {
+      console.log(navigator.mediaDevices);
+      if (!isCaptureSupported()) {
+        selfieBooth.classList.add('hidden');
+      }
+    });
+
   </script>
   
   <div class="bg-white rounded-md shadow-md p-5 max-w-xl mx-auto">
    
     <div class="text-center font-bold mb-5">Generate Your Poster</div>
     
-    <div bind:this="{imageSelect}" class="flex items-center justify-center mb-5">
-        <label for="upload-file" class="border border-2 border-dashed w-56 p-5 rounded-lg flex flex-col items-center">
+    <div bind:this="{imageSelect}" class="flex items-center justify-center gap-5 mb-5">
+        <label for="upload-file-1" bind:this="{selfieBooth}" class="border border-2 border-dashed p-5 rounded-lg flex flex-col items-center">
             <img src="img/selfie.svg" alt="Take Selfie" class="mb-2 h-40"/>
             <div class="text-center">Take Selfie</div>
         </label>
+
+        <label for="upload-file-1" class="border border-2 border-dashed p-5 rounded-lg flex flex-col items-center">
+          <img src="img/file-upload.svg" alt="Take Selfie" class="mb-2 h-40"/>
+          <div class="text-center">Upload Image</div>
+      </label>
     </div>
 
     <canvas bind:this="{canvas}" width="500" height="500" class="w-full fixed -z-10 mb-5"></canvas>
@@ -126,7 +165,8 @@
       </button>
     </div>
 
-    <input id="upload-file" class="hidden" type="file" accept="image/*" capture="user" on:change="{handleImageUpload}" />
+    <input id="upload-file-1" class="hidden" type="file" accept="image/*" capture="user" on:change="{handleImageUpload}" />
+    <input id="upload-file-2" class="hidden" type="file" accept="image/*" on:change="{handleImageUpload}" />
     
   </div>
 
